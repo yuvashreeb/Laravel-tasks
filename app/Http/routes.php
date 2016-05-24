@@ -27,3 +27,19 @@ Route::get('/login',array(
     'as'=>'login',
     'uses'=>'admincontroller@login'
 ));
+Route::post('/registration-step2',array(
+   'as'=>'registration-step2',
+    'uses'=>'admincontroller@registerstep'
+));
+Route::get('/registration-step2',array(
+   'as'=>'registration-step2',
+    'uses'=>'admincontroller@registerstep'
+));
+Route::post('/finalregistration',array(
+   'as'=>'finalregistration',
+    'uses'=>'admincontroller@registerfinal'
+));
+Route::post('/success',array(
+   'as'=>'success',
+    'uses'=>'admincontroller@confirm'
+));

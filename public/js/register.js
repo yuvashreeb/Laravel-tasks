@@ -36,9 +36,9 @@ $(document).ready(function () {
     $("#Password").keyup(function () {
 
         var ValidatePassword = $("#Password").val();
-        if (ValidatePassword.length < 8)
+        if (ValidatePassword.length < 20)
         {
-            $("#PasswordError").html("Password should be atleast 8 characters and one captial letter");
+            $("#PasswordError").html("Password should be atleast 20 characters and one captial letter");
         } else {
             $("#PasswordError").html("");
         }
@@ -113,21 +113,28 @@ $(document).ready(function () {
     $("#Next").click(function (event) {
         var phone = validateNumber();
         var Email = validateEmail();
-        if (phone==false||Email==false){
+        if (phone == false || Email == false) {
             event.preventDefault();
         }
     });
-   $("#success").click(function(event){
-      var FullName = validateFullName();
+    $("#success").click(function (event) {
+        var FullName = validateFullName();
         var address = validateAddress();
         var City = validateCity();
-        var state = validateState(); 
+        var state = validateState();
         var phone = validateNumber();
         var Email = validateEmail();
-        if (FullName == false || address == false || City == false || state == false || phone==false||Email==false) {
+        if (FullName == false || address == false || City == false || state == false || phone == false || Email == false) {
             event.preventDefault();
         }
-   });
+    });
+    $('#submit').click(function (event) {
+        var Email = validateEmail();
+        var Password = validatePassword();
+        if (Email == false || Password == false) {
+            event.preventDefault();
+        }
+    });
 
 });
 function validateFullName() {
@@ -224,5 +231,14 @@ function validateEmail() {
     {
         $("#EmailError").html("");
         return true;
+    }
+}
+function validatePassword() {
+    var ValidatePassword = $("#Password").val();
+    if (ValidatePassword.length < 20)
+    {
+        $("#PasswordError").html("Password should be atleast 20 characters and one captial letter");
+    } else {
+        $("#PasswordError").html("");
     }
 }

@@ -14,54 +14,52 @@
         <script src="{{asset('js/register.js')}}" type="text/javascript"></script>
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
     </head>
-    <body class="hold-transition register-page">
-        <div class="register-box">
+    <body class="hold-transition register-page"><div class="register-box">
             <div class="register-logo">
                 <a href="{{URL::route('dashboard')}}"><b>Admin</b>LTE</a>
             </div>
 
             <div class="register-box-body">
                 <p class="login-box-msg"><b>STEP 3</b></p>
-
                 <form action="{{URL::route('success')}}" method="post">
                     <input type='hidden' name='_token' value='{{csrf_token()}}'/>
-                    
+
                     <div class="form-group has-feedback">
-                        <label>FULL NAME: </label><input type="hidden" value="{{$value['FullName']}}"/>{{$value['FullName']}}
+                        <label>FULL NAME: </label><input type="hidden" value="{{$value['FullName']}}" name="FullName"/>{{$value['FullName']}}
                         <span class="errormsg" id="FullNameError"></span>
                     </div>
                     <div class='form-group has-feedback'>
-                        <label>ADDRESS: </label><input type="hidden" value="{{$value['Address']}}"/>{{$value['Address']}}
+                        <label>ADDRESS: </label><input type="hidden" value="{{$value['Address']}}" name="Address"/>{{$value['Address']}}
                         <span class="errormsg" id="AddressError"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <label>CITY: </label><input type="hidden" value="{{$value['City']}}"/>{{$value['City']}}
+                        <label>CITY: </label><input type="hidden" name="City" value="{{$value['City']}}"/>{{$value['City']}}
                     </span><span class="errormsg" id="CityError"></span>
             </div>
             <div class='form-group has-feedback'>
-                <label>STATE: </label><input type="hidden" value="{{$value['State']}}"/>{{$value['State']}}
-    </div>
-    <div class="form-group has-feedback">
-        <label>PHONE NUMBER: </label><input type="hidden" value="{{$value['PhoneNumber']}}"/>{{$value['PhoneNumber']}}
-        <span class="errormsg" id="MobileNumberError"></span>
-    </div>
-    <div class='form-group has-feedback'>
-        <label>EMAIL: </label><input type="hidden" value="{{$value['Email']}}"/>{{$value['Email']}}
-        <span class="errormsg" id="EmailError"></span>
-    </div>
-
-    <div class="row">
-            <div class="col-xs-4">
-                <a href="{{URL::route('registration-step2')}}"><input type="button" value='BACK' class="btn btn-primary btn-block btn-flat"></a>
+                <label>STATE: </label><input type="hidden" name="State" value="{{$value['State']}}"/>{{$value['State']}}
             </div>
-        
-        <div class="col-xs-4">
-            <button type="submit" class="btn btn-primary btn-block btn-flat float" id="success">SUBMIT</button>
-<!--           <button type="submit" class="btn btn-primary btn-block btn-flat float" id="confirm">SUBMIT</button>-->
-        </div>
+            <div class="form-group has-feedback">
+                <label>PHONE NUMBER: </label><input type="hidden" name="PhoneNumber" value="{{$value['PhoneNumber']}}"/>{{$value['PhoneNumber']}}
+                <span class="errormsg" id="MobileNumberError"></span>
+            </div>
+            <div class='form-group has-feedback'>
+                <label>EMAIL: </label><input type="hidden" name="Email" value="{{$value['Email']}}"/>{{$value['Email']}}
+                <span class="errormsg" id="EmailError"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4">
+                    <a href="{{URL::route('registration-step2')}}"><input type="button" value='BACK' class="btn btn-primary btn-block btn-flat"></a>
+                </div>
+
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat float" id="success">SUBMIT</button>
+                    <!--           <button type="submit" class="btn btn-primary btn-block btn-flat float" id="confirm">SUBMIT</button>-->
+                </div>
+            </div>
+        </form>
     </div>
-</form>
-</div>
 </div>
 <!-- jQuery 2.2.0 -->
 <script src="../../plugins/jQuery/jQuery-2.2.0.min.js"></script>

@@ -61,7 +61,7 @@
         <div class="col-xs-4">
             <button type="submit" class="btn btn-primary btn-block btn-flat float" id="next">NEXT</button>
         </div>
-    </div>
+    </div><br>
     @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
@@ -71,6 +71,14 @@
         </ul>
     </div>
     @endif
+    @if(isset($success))
+    <div class="alert alert-success">
+    {{$success}}
+    </div>
+    @endif
+<!--    @if(isset($password))
+    {{$password}}
+    @endif-->
 </form>
 </div>
 </div>

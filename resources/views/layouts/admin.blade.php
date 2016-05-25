@@ -356,6 +356,12 @@
             <small class="label pull-right bg-green">new</small>
           </a>
         </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-th"></i> <span>Loged Details</span>
+            <small class="label pull-right bg-green">new</small>
+          </a>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>

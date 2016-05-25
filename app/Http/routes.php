@@ -43,3 +43,7 @@ Route::post('/success',array(
    'as'=>'success',
     'uses'=>'admincontroller@confirm'
 ));
+Route::post('/loginverify',array(
+   'as'=>'loginverify',
+    'uses'=>'admincontroller@loginverify'
+));

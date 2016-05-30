@@ -47,3 +47,52 @@ Route::post('/loginverify',array(
    'as'=>'loginverify',
     'uses'=>'admincontroller@loginverify'
 ));
+Route::get('UpdateProfile', array(
+    'as' => 'UpdateProfile',
+    'uses' => 'admincontroller@UpdateProfile'
+));
+Route::get('ChangePassword', array(
+    'as' => 'ChangePassword',
+    'uses' => 'admincontroller@ChangePassword'
+));
+Route::post('Update', array(
+    'as' => 'onupdate',
+    'uses' => 'admincontroller@onupdate'
+));
+Route::post('ChangePassword', array(
+    'as' => 'password',
+    'uses' => 'admincontroller@password'
+));
+Route::get('logout', array(
+    'as' => 'logout',
+    'uses' => 'admincontroller@logout'
+));
+Route::get('FileUpload', array(
+    'as' => 'FileUpload',
+    'uses' => 'admincontroller@FileUpload'
+));
+Route::get('maps', array(
+    'as' => 'maps',
+    'uses' => 'admincontroller@maps'
+));
+Route::post('upload', array(
+    'as' => 'upload',
+    'uses' => 'admincontroller@upload'
+));
+Route::get('json', array(
+    'as' => 'json',
+    'uses' => 'admincontroller@json'
+));
+Route::get('Forgot', array(
+    'as' => 'Forgot',
+    'uses' => 'admincontroller@Forgot'
+));
+
+Route::post('ForgotPassword', array(
+    'as' => 'ForgotPassword',
+    'uses' => 'admincontroller@ForgotPassword'
+));
+Route::get('timezone', array(
+    'as' => 'timezone',
+    'uses' => 'admincontroller@timezone'
+));

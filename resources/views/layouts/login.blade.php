@@ -20,6 +20,17 @@
             <div class="login-logo">
                 <a href="{{URL::route('dashboard')}}"><b>Admin</b>LTE</a>
             </div>
+            @if ( session()->has('password') )
+            <div class="alert alert-info">{{ session()->get('password') }}</div>
+            @endif
+            @if ( session()->has('logout') )
+            <div class="alert alert-info">{{ session()->get('logout') }}</div>
+            @endif
+
+            <!-- /.login-logo -->
+            @if(isset($error))
+            <div class="alert alert-danger">{{$error}}</div>
+            @endif
             <div class="login-box-body">
                 <p class="login-box-msg">Sign in to start your session</p>
                 <form action="{{URL::route('loginverify')}}" method="post">

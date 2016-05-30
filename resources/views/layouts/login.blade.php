@@ -58,6 +58,7 @@
         </div>
     </div>
 </form>
+<a href="{{URL::route('Forgot')}}"class="text-center">I forgot my password</a><br>
 <a href="{{URL::route('registration')}}" class="text-center">Register a new membership</a>
 
 </div>

@@ -25,12 +25,17 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\AddUser;
-use Illuminate\Support\Facades\Hash;
+Use Illuminate\Support\Facades\Hash;
 use DateTime;
-use Illuminate\Support\Facades\Mail;
-use App\Http\Requests;
+use Mail;
 use Illuminate\Http\Request;
+use App\Uploads;
 use App\Logs;
+use Illuminate\Support\Facades\Crypt;
+use DateTimeZone;
+use App\TimeZone;
+use Maatwebsite\Excel\Facades\Excel;
+USE Barryvdh\DomPDF\PDF;
 
 class admincontroller extends BaseController {
 
@@ -150,7 +155,7 @@ class admincontroller extends BaseController {
             $PhoneNumber = Input::get('PhoneNumber');
             $Email = Input::get('Email');
             $Password = md5($password);
-            echo "<br />" . $Password . "<br />Hashed";
+            //echo "<br />" . $Password . "<br />Hashed";
 
 
             $User = AddUser::create(['FullName' => $FullName, 'Address' => $Address, 'City' => $City, 'State' => $State, 'PhoneNumber' => $PhoneNumber, 'Email' => $Email, 'Password' => $Password]);
@@ -175,8 +180,10 @@ class admincontroller extends BaseController {
         $Password = Input::get('Password');
         $HashPassword = md5($Password);
 //        echo $HashPassword;
-        $DbPassword = AddUser::select('Password')->where('Email', $Email)->first();
+        $DbPassword = AddUser::select('Password', 'Id')->where('Email', $Email)->first();
         $DbPassword = json_decode(json_encode($DbPassword), true);
+        session(['Id' => $DbPassword['Id']]);
+//        echo Session::get('Id');
         if ($HashPassword == $DbPassword['Password']) {
             $ipAddress = $_SERVER['REMOTE_ADDR'];
             if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
@@ -284,31 +291,32 @@ class admincontroller extends BaseController {
         $browserDetails = AddUser::select('FullName', 'Address', 'City', 'State', 'Email', 'PhoneNumber', 'CreditCard')->where('Email', Session::get('Email'))->first();
         $value = $browserDetails['CreditCard'];
 
-        $card = Crypt::decrypt($value);
-        echo $card;
-
-        return view('login.update', ['info' => $browserDetails, 'credit' => $card]);
+        //$card = Crypt::decrypt($value);
+        //echo $card;
+//, 'credit' => $card
+        return view('login.update', ['info' => $browserDetails]);
     }
 
     public function onupdate() {
         session()->regenerate();
-        //  echo Session::get('Id');
-        $Full_name = Input::get('FullName');
+        echo Session::get('Id');
+        $Full_name = Input::get('Full_name');
+        echo $Full_name;
         $Address = Input::get('Address');
         $City = Input::get('City');
         $state = Input::get('state');
         $Email = Input::get('Email');
         $Mobile = Input::get('Mobile');
         $card = Input::get('credit');
-        $card = Crypt::encrypt($card);
+        //$card = Crypt::encrypt($card);
 
         $update = AddUser::where('Id', Session::get('Id'))->update([
-            'Full_name' => $Full_name,
+            'FullName' => $Full_name,
             'Address' => $Address,
             'City' => $City,
             'State' => $state,
             'Email' => $Email,
-            'Mobile' => $Mobile,
+            'PhoneNumber' => $Mobile,
             'CreditCard' => $card
         ]);
         if ($update) {
@@ -346,7 +354,7 @@ class admincontroller extends BaseController {
     public function logout() {
         session()->regenerate();
         session(['Id' => null, 'Email' => null]);
-        return Redirect::route('LteLogin')
+        return Redirect::route('login')
                         ->with('logout', 'sucessfully logged out');
     }
 
@@ -390,22 +398,22 @@ class admincontroller extends BaseController {
 
         $Email = Input::get('Email');
         session(['Email' => $Email]);
-        $dbpwd = AddUser::select('Id', 'Full_name', 'Address', 'City', 'State')->where('Email', $Email)->first();
+        $dbpwd = AddUser::select('Id', 'FullName', 'Address', 'City', 'State')->where('Email', $Email)->first();
         if ($dbpwd) {
-            $name = $dbpwd['Full_name'];
+            $name = $dbpwd['FullName'];
             $Address = $dbpwd['Address'];
             $City = $dbpwd['City'];
             $State = $dbpwd['State'];
-            $object = new LaravelTaskController();
+            $object = new admincontroller();
             $message = $object->generatePassword($name, $City, $State);
             echo $message;
             if ($message) {
                 $password = md5($message);
                 AddUser::where('Email', $Email)->update(['Password' => $password]);
-                return Redirect::route('LteLogin')
+                return Redirect::route('login')
                                 ->with('password', 'Successfully Updated.Mail send to your respective Email ID');
             } else {
-                return Redirect::route('LteLogin')
+                return Redirect::route('login')
                                 ->with('password', 'Problem in updating.Try again later!');
             }
         }
@@ -479,7 +487,7 @@ class admincontroller extends BaseController {
 
         $val = Mail::raw($message, function ($message)use($Email) {
 
-                    $message->from('kaveri.nagunuri@karmanya.co.in', 'kaveri');
+                    $message->from('yuvashree.b@karmanya.co.in', 'yuva');
                     $message->to($Email)->subject("Generated Password");
                 });
         return $message;
@@ -525,8 +533,81 @@ class admincontroller extends BaseController {
 //    print_r($timezone);
 //echo '</pre>';
         $data = TimeZone::select(['Id', 'Name', 'Offset'])->get();
-
+//        echo $data;
         return view('layouts.TimeZone', ['data' => $data]);
+    }
+
+    public function excelreg() {
+        $users = AddUser::select('*')->get();
+        Excel::create('registeredUser', function($excel) use($users) {
+            $excel->sheet('Sheet 1', function($sheet) use($users) {
+                $sheet->fromArray($users);
+            });
+        })->export('xls');
+    }
+
+    public function logexcel() {
+        $users = Logs::select('*')->get();
+        Excel::create('logdetails', function($excel) use($users) {
+            $excel->sheet('Sheet 1', function($sheet) use($users) {
+                $sheet->fromArray($users);
+            });
+        })->export('xls');
+    }
+
+    public function fileuploadexcel() {
+        $users = Uploads::select('*')->get();
+        Excel::create('fileuploadexcel', function($excel) use($users) {
+            $excel->sheet('Sheet 1', function($sheet) use($users) {
+                $sheet->fromArray($users);
+            });
+        })->export('xls');
+    }
+
+    public function timezoneexcel() {
+        $users = TimeZone::select('*')->get();
+        Excel::create('timezoneexcel', function($excel) use($users) {
+            $excel->sheet('Sheet 1', function($sheet) use($users) {
+                $sheet->fromArray($users);
+            });
+        })->export('xls');
+    }
+
+    public function regpdf() {
+        $data = AddUser::get()->toArray();
+        return Excel::create('ReguserPdf', function($excel) use ($data) {
+                    $excel->sheet('mySheet', function($sheet) use ($data) {
+                        $sheet->fromArray($data);
+                        $sheet->setPaperSize('a4')->setOrientation('landscape');
+                    });
+                })->download("pdf");
+    }
+
+    public function logpdf() {
+        $data = Logs::get()->toArray();
+        return Excel::create('LogsDetailPdf', function($excel) use ($data) {
+                    $excel->sheet('mySheet', function($sheet) use ($data) {
+                        $sheet->fromArray($data);
+                    });
+                })->download("pdf");
+    }
+
+    public function fileuploadpdf() {
+        $data = Uploads::get()->toArray();
+        return Excel::create('FileuploadPdf', function($excel) use ($data) {
+                    $excel->sheet('mySheet', function($sheet) use ($data) {
+                        $sheet->fromArray($data);
+                    });
+                })->download("pdf");
+    }
+
+    public function timezonepdf() {
+        $data = TimeZone::get()->toArray();
+        return Excel::create('TimezonePdf', function($excel) use ($data) {
+                    $excel->sheet('mySheet', function($sheet) use ($data) {
+                        $sheet->fromArray($data);
+                    });
+                })->download("pdf");
     }
 
 }

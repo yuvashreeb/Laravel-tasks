@@ -424,11 +424,23 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
+                                <li><a href="{{URL::route('excelreg')}}"><i class="fa fa-circle-o"></i>Registered User Excel</a></li>
+                                <li><a href="{{URL::route('logexcel')}}"><i class="fa fa-circle-o"></i>LogDetails excel</a></li>
+                                <li><a href="{{URL::route('fileuploadexcel')}}"><i class="fa fa-circle-o"></i>File Upload Excel</a></li>
+                                <li><a href="{{URL::route('timezoneexcel')}}"><i class="fa fa-circle-o"></i> TimeZone Excel</a></li>
+                                
+                            </ul>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::route('regpdf')}}"><i class="fa fa-circle-o"></i>Registered User PDF</a></li>
+                                <li><a href="{{URL::route('logpdf')}}"><i class="fa fa-circle-o"></i>LogDetails excel</a></li>
+                                <li><a href="{{URL::route('fileuploadpdf')}}"><i class="fa fa-circle-o"></i>File Upload PDFPDF</a></li>
+                                <li><a href="{{URL::route('timezonepdf')}}"><i class="fa fa-circle-o"></i> TimeZone PDF</a></li>
+                                
+                            </ul>
+                            <ul class="treeview-menu">
                                 <li><a href="{{URL::route('FileUpload')}}"><i class="fa fa-circle-o"></i> File Upload</a></li>
                                 <li><a href="{{URL::route('json')}}"><i class="fa fa-circle-o"></i> View Files</a></li>
                                 <li><a href="{{URL::route('timezone')}}"><i class="fa fa-circle-o"></i>Time Zone</a></li>
-
-                                <li><a href="{{URL::route('maps')}}"><i class="fa fa-circle-o"></i> User Location</a></li>
                                 <li><a href="{{URL::route('UpdateProfile')}}"><i class="fa fa-circle-o"></i> Update Profile</a></li>
                                 <li><a href="{{URL::route('ChangePassword')}}"><i class="fa fa-circle-o"></i> Change Password</a></li>
                             </ul>

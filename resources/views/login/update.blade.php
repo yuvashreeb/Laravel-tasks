@@ -40,7 +40,7 @@
                     <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                     @if(isset($info))
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="Full name" id="Full_name" name="Full_name" value="{{$info['Full_name']}}"> 
+                        <input type="text" class="form-control" placeholder="Full name" id="Full_name" name="Full_name" value="{{$info['FullName']}}"> 
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                         <span class="error" id="Fullname_error"></span>
 
@@ -73,7 +73,7 @@
                         </select>
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="Phone Number" id="Mobile" name="Mobile" size="10" value="{{$info['Mobile']}}">
+                        <input type="text" class="form-control" placeholder="Phone Number" id="Mobile" name="Mobile" size="10" value="{{$info['PhoneNumber']}}">
                         <span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
                         <span class="error" id="Mobile_error"></span>
                     </div>

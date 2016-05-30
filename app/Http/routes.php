@@ -96,3 +96,35 @@ Route::get('timezone', array(
     'as' => 'timezone',
     'uses' => 'admincontroller@timezone'
 ));
+Route::get('excelreg', array(
+    'as' => 'excelreg',
+    'uses' => 'admincontroller@excelreg'
+));
+Route::get('logexcel', array(
+    'as' => 'logexcel',
+    'uses' => 'admincontroller@logexcel'
+));
+Route::get('fileuploadexcel', array(
+    'as' => 'fileuploadexcel',
+    'uses' => 'admincontroller@fileuploadexcel'
+));
+Route::get('timezoneexcel', array(
+    'as' => 'timezoneexcel',
+    'uses' => 'admincontroller@timezoneexcel'
+));
+Route::get('regpdf', array(
+    'as' => 'regpdf',
+    'uses' => 'admincontroller@regpdf'
+));
+Route::get('logpdf', array(
+    'as' => 'logpdf',
+    'uses' => 'admincontroller@logpdf'
+));
+Route::get('fileuploadpdf', array(
+    'as' => 'fileuploadpdf',
+    'uses' => 'admincontroller@fileuploadpdf'
+));
+Route::get('timezonepdf', array(
+    'as' => 'timezonepdf',
+    'uses' => 'admincontroller@timezonepdf'
+));

@@ -128,3 +128,7 @@ Route::get('timezonepdf', array(
     'as' => 'timezonepdf',
     'uses' => 'admincontroller@timezonepdf'
 ));
+Route::get('dataview', array(
+    'as' => 'dataview',
+    'uses' => 'admincontroller@dataview'
+));

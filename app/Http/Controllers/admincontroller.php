@@ -362,9 +362,9 @@ class admincontroller extends BaseController {
         return view('FileUpload.fileupload');
     }
 
-    public function maps() {
-        return view('layouts.location');
-    }
+//    public function maps() {
+//        return view('layouts.location');
+//    }
 
     public function upload() {
         $input = Input::file('file');
@@ -577,8 +577,8 @@ class admincontroller extends BaseController {
         $data = AddUser::get()->toArray();
         return Excel::create('ReguserPdf', function($excel) use ($data) {
                     $excel->sheet('mySheet', function($sheet) use ($data) {
-                        $sheet->fromArray($data);
                         $sheet->setPaperSize('a4')->setOrientation('landscape');
+                        $sheet->fromArray($data);
                     });
                 })->download("pdf");
     }
@@ -609,5 +609,7 @@ class admincontroller extends BaseController {
                     });
                 })->download("pdf");
     }
-
+public function dataview(){
+    echo 'hi';
+}
 }

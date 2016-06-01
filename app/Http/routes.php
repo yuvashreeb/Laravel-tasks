@@ -128,7 +128,23 @@ Route::get('timezonepdf', array(
     'as' => 'timezonepdf',
     'uses' => 'admincontroller@timezonepdf'
 ));
-Route::get('dataview', array(
-    'as' => 'dataview',
-    'uses' => 'admincontroller@dataview'
+Route::get('/edit/{data}',array(
+   'as'=>'/edit/',
+    'uses'=>'admincontroller@edit'
+));
+Route::get('/delete/{data}',array(
+   'as'=>'/delete/',
+    'uses'=>'admincontroller@delete'
+));
+Route::get('/view/{data}',array(
+   'as'=>'/view/',
+    'uses'=>'admincontroller@view'
+));
+Route::get('facebook', array(
+    'as'=>'facebook',
+    'uses'=>'admincontroller@redirectToProvider'
+));
+Route::get('facebook/callback', array(
+    'as'=>'facebook/callback',
+    'uses'=>'admincontroller@handleProviderCallback'
 ));

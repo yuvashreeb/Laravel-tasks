@@ -61,6 +61,15 @@
 <a href="{{URL::route('Forgot')}}"class="text-center">I forgot my password</a><br>
 <a href="{{URL::route('registration')}}" class="text-center">Register a new membership</a>
 
+<div class="social-auth-links text-center">
+    <p>- OR -</p>
+    <a href="{{url::route('facebook')}}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+        Facebook</a>
+    <a href="" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+        Google+</a>
+    <a href="https://www.linkedin.com/uas/login" class="btn btn-block btn-social btn-linkedin btn-flat"><i class="fa fa-linkedin"></i> Sign in using
+        Linkedin</a>
+</div>
 </div>
 </div>
 <script src="{{asset('/plugins/jQuery/jQuery-2.2.0.min.js')}}"></script>

@@ -36,6 +36,7 @@ use DateTimeZone;
 use App\TimeZone;
 use Maatwebsite\Excel\Facades\Excel;
 USE Barryvdh\DomPDF\PDF;
+use Laravel\Socialite\Facades\Socialite;
 
 class admincontroller extends BaseController {
 
@@ -609,7 +610,46 @@ class admincontroller extends BaseController {
                     });
                 })->download("pdf");
     }
-public function dataview(){
-    echo 'hi';
-}
+
+    public function view($data) {
+        $View = TimeZone::select('*')->where('Id', $data)->get();
+        return view('layouts.view', ['view' => $View]);
+    }
+
+    public function edit($data) {
+        $Edit = TimeZone::select('*')->where('Id', $data)->get();
+        return view('layouts.edit', ['view' => $Edit]);
+    }
+
+    public function delete($data) {
+        $Delete = TimeZone::select('*')->where('Id', $data)->get();
+        return view('layouts.delete', ['view' => $Delete]);
+    }
+
+    public function redirectToProvider() {
+
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleProviderCallback() {
+        $user = Socialite::driver('facebook')->user();
+        print_r($user);
+
+// OAuth Two Providers
+        $token = $user->token;
+        $refreshToken = $user->refreshToken; // not always provided
+        $expiresIn = $user->expiresIn;
+
+// OAuth One Providers
+        $token = $user->token;
+        //echo "<br>"."Token" . $token;
+
+// All Providers
+        $user->getId();
+        $user->getNickname();
+        $user->getName();
+        $user->getEmail();
+        $user->getAvatar();
+    }
+
 }

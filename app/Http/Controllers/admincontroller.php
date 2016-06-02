@@ -37,6 +37,7 @@ use App\TimeZone;
 use Maatwebsite\Excel\Facades\Excel;
 USE Barryvdh\DomPDF\PDF;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\GoogleProvider;
 
 class admincontroller extends BaseController {
 
@@ -186,104 +187,107 @@ class admincontroller extends BaseController {
         session(['Id' => $DbPassword['Id']]);
 //        echo Session::get('Id');
         if ($HashPassword == $DbPassword['Password']) {
-            $ipAddress = $_SERVER['REMOTE_ADDR'];
-            if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
-                $ipAddress = array_pop(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
-            }
-
-            $user['useragent'] = $request->server('HTTP_USER_AGENT');
-            $input['ip'] = $request->ip();
-            // print_r($user);
-            //print_r($input);
-            $u_agent = $_SERVER['HTTP_USER_AGENT'];
-            $bname = 'Unknown';
-            $platform = 'Unknown';
-            $version = "";
-            //First get the platform?
-            if (preg_match('/linux/i', $u_agent)) {
-                $platform = 'linux';
-            } elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
-                $platform = 'mac';
-            } elseif (preg_match('/windows|win32/i', $u_agent)) {
-                $platform = 'windows';
-            }
-
-            // Next get the name of the useragent yes seperately and for good reason
-            if (preg_match('/MSIE/i', $u_agent) && !preg_match('/Opera/i', $u_agent)) {
-                $bname = 'Internet Explorer';
-                $ub = "MSIE";
-            } elseif (preg_match('/Firefox/i', $u_agent)) {
-                $bname = 'Mozilla Firefox';
-                $ub = "Firefox";
-            } elseif (preg_match('/Chrome/i', $u_agent)) {
-                $bname = 'Google Chrome';
-                $ub = "Chrome";
-            } elseif (preg_match('/Safari/i', $u_agent)) {
-                $bname = 'Apple Safari';
-                $ub = "Safari";
-            } elseif (preg_match('/Opera/i', $u_agent)) {
-                $bname = 'Opera';
-                $ub = "Opera";
-            } elseif (preg_match('/Netscape/i', $u_agent)) {
-                $bname = 'Netscape';
-                $ub = "Netscape";
-            }
-
-            // finally get the correct version number
-            $known = array('Version', $ub, 'other');
-            $pattern = '#(?<browser>' . join('|', $known) .
-                    ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
-            if (!preg_match_all($pattern, $u_agent, $matches)) {
-                // we have no matching number just continue
-            }
-
-            // see how many we have
-            $i = count($matches['browser']);
-            if ($i != 1) {
-                //we will have two since we are not using 'other' argument yet
-                //see if version is before or after the name
-                if (strripos($u_agent, "Version") < strripos($u_agent, $ub)) {
-                    $version = $matches['version'][0];
-                } else {
-                    $version = $matches['version'][1];
-                }
-            } else {
-                $version = $matches['version'][0];
-            }
-
-            // check if we have a number
-            if ($version == null || $version == "") {
-                $version = "?";
-            }
-
-            $u = array(
-                'userAgent' => $u_agent,
-                'name' => $bname,
-                'version' => $version,
-                'platform' => $platform,
-                'pattern' => $pattern
-            );
-            $yourbrowser = ['userAgent' => $u_agent, 'name' => $bname, 'version' => $version, 'platform' => $platform, 'pattern' => $pattern];
-            $jsonDetails = json_encode($yourbrowser);
-
-            Logs::create(['UserAgent' => $jsonDetails,
-                'IpAddress' => $input['ip'],
-                'BrowserName' => $yourbrowser['name'],
-                'Version' => $yourbrowser['version'],
-                'Platform' => $yourbrowser['platform'],
-                'Email' => Session::get('Email'),
-            ]);
-            $browserDetails = Logs::select('UserAgent', 'IpAddress', 'BrowserName', 'Version', 'Platform', 'updated_at')->where('Email', Session::get('Email'))->orderBy('updated_at', 'desc')->take(5)->get();
-
-//($browserDetails);
-
-            return view('login.logdetails', ['logs' => $browserDetails]);
-
             //return Redirect::route('adminlte');
+            $Object = new admincontroller();
+            $logs = $Object->LogDetails($request);
+            return view('login.logdetails', ['logs' => $logs]);
         } else {
             $error = "invalid credentials";
             return view('layouts.login', ['error' => $error]);
         }
+    }
+
+    public function LogDetails(Request $request) {
+        $ipAddress = $_SERVER['REMOTE_ADDR'];
+        if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
+            $ipAddress = array_pop(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
+        }
+
+        $user['useragent'] = $request->server('HTTP_USER_AGENT');
+        $input['ip'] = $request->ip();
+        // print_r($user);
+        //print_r($input);
+        $u_agent = $_SERVER['HTTP_USER_AGENT'];
+        $bname = 'Unknown';
+        $platform = 'Unknown';
+        $version = "";
+        //First get the platform?
+        if (preg_match('/linux/i', $u_agent)) {
+            $platform = 'linux';
+        } elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
+            $platform = 'mac';
+        } elseif (preg_match('/windows|win32/i', $u_agent)) {
+            $platform = 'windows';
+        }
+
+        // Next get the name of the useragent yes seperately and for good reason
+        if (preg_match('/MSIE/i', $u_agent) && !preg_match('/Opera/i', $u_agent)) {
+            $bname = 'Internet Explorer';
+            $ub = "MSIE";
+        } elseif (preg_match('/Firefox/i', $u_agent)) {
+            $bname = 'Mozilla Firefox';
+            $ub = "Firefox";
+        } elseif (preg_match('/Chrome/i', $u_agent)) {
+            $bname = 'Google Chrome';
+            $ub = "Chrome";
+        } elseif (preg_match('/Safari/i', $u_agent)) {
+            $bname = 'Apple Safari';
+            $ub = "Safari";
+        } elseif (preg_match('/Opera/i', $u_agent)) {
+            $bname = 'Opera';
+            $ub = "Opera";
+        } elseif (preg_match('/Netscape/i', $u_agent)) {
+            $bname = 'Netscape';
+            $ub = "Netscape";
+        }
+
+        // finally get the correct version number
+        $known = array('Version', $ub, 'other');
+        $pattern = '#(?<browser>' . join('|', $known) .
+                ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+        if (!preg_match_all($pattern, $u_agent, $matches)) {
+            // we have no matching number just continue
+        }
+
+        // see how many we have
+        $i = count($matches['browser']);
+        if ($i != 1) {
+            //we will have two since we are not using 'other' argument yet
+            //see if version is before or after the name
+            if (strripos($u_agent, "Version") < strripos($u_agent, $ub)) {
+                $version = $matches['version'][0];
+            } else {
+                $version = $matches['version'][1];
+            }
+        } else {
+            $version = $matches['version'][0];
+        }
+
+        // check if we have a number
+        if ($version == null || $version == "") {
+            $version = "?";
+        }
+
+        $u = array(
+            'userAgent' => $u_agent,
+            'name' => $bname,
+            'version' => $version,
+            'platform' => $platform,
+            'pattern' => $pattern
+        );
+        $yourbrowser = ['userAgent' => $u_agent, 'name' => $bname, 'version' => $version, 'platform' => $platform, 'pattern' => $pattern];
+        $jsonDetails = json_encode($yourbrowser);
+
+        Logs::create(['UserAgent' => $jsonDetails,
+            'IpAddress' => $input['ip'],
+            'BrowserName' => $yourbrowser['name'],
+            'Version' => $yourbrowser['version'],
+            'Platform' => $yourbrowser['platform'],
+            'Email' => Session::get('Email'),
+        ]);
+        $browserDetails = Logs::select('UserAgent', 'IpAddress', 'BrowserName', 'Version', 'Platform', 'updated_at')->where('Email', Session::get('Email'))->orderBy('updated_at', 'desc')->take(5)->get();
+        return $browserDetails;
+//($browserDetails);
     }
 
     public function UpdateProfile() {
@@ -631,25 +635,74 @@ class admincontroller extends BaseController {
         return Socialite::driver('facebook')->redirect();
     }
 
+//
+
+
     public function handleProviderCallback() {
+        session()->regenerate();
         $user = Socialite::driver('facebook')->user();
-        print_r($user);
+        $object = new admincontroller();
+        $data = $object->SocialUser($user);
+        if ($data)
+            return redirect::route('DashBoard');
+    }
 
-// OAuth Two Providers
-        $token = $user->token;
-        $refreshToken = $user->refreshToken; // not always provided
-        $expiresIn = $user->expiresIn;
+    public function DashBoard(Request $request) {
+        $Object = new admincontroller();
+        $logs = $Object->LogDetails($request);
+        return view('login.logdetails', ['logs' => $logs]);
+    }
 
-// OAuth One Providers
-        $token = $user->token;
+    public function redirectToProvidergoogle() {
+
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function onSignIn() {
+        session()->regenerate();
+        $user = Socialite::driver('google')->user();
+        $object = new admincontroller();
+        $data = $object->SocialUser($user);
+        if ($data)
+            return redirect::route('DashBoard');
+    }
+
+    public function redirectToProviderlinkedin() {
+
+        return Socialite::driver('linkedin')->redirect();
+    }
+
+    public function handleProviderCallbacklinkedin() {
+        session()->regenerate();
+        $user = Socialite::driver('linkedin')->user();
+        $object = new admincontroller();
+        $data = $object->SocialUser($user);
+        if ($data)
+            return redirect::route('DashBoard');
+    }
+
+    public function SocialUser($user) {
+        $FBId = $user->getId();
         //echo "<br>"."Token" . $token;
-
-// All Providers
-        $user->getId();
-        $user->getNickname();
-        $user->getName();
-        $user->getEmail();
-        $user->getAvatar();
+        $Name = $user->getName();
+        //echo $Name;
+        $Email = $user->getEmail();
+        //echo $Email;
+        session(['Email' => $Email]);
+        $GetEmail = AddUser::where('Email', $Email)->count();
+        if ($GetEmail == 0) {
+            $FacebookUser = AddUser::create(['FullName' => $Name, 'Email' => $Email, 'FbId' => $FBId]);
+            return $FacebookUser;
+        } else {
+            $GetEmail = AddUser::where('Email', $Email)->get();
+            if ($GetEmail[0]['FbId'] == $FBId) {
+                return 'success';
+            } else {
+                $LoggedUser = AddUser::where('Email', $Email)->update(['FbId' => $FBId]);
+                return $LoggedUser;
+            }
+            
+        }
     }
 
 }

@@ -148,3 +148,23 @@ Route::get('facebook/callback', array(
     'as'=>'facebook/callback',
     'uses'=>'admincontroller@handleProviderCallback'
 ));
+Route::get('/DashBoard',array(
+    'as'=>'DashBoard',
+    'uses'=>'admincontroller@DashBoard'
+));
+Route::get('google', array(
+    'as'=>'google',
+    'uses'=>'admincontroller@redirectToProvidergoogle'
+));
+Route::get('google/callback', array(
+    'as'=>'google/callback',
+    'uses'=>'admincontroller@onSignIn'
+));
+Route::get('linkedin', array(
+    'as'=>'linkedin',
+    'uses'=>'admincontroller@redirectToProviderlinkedin'
+));
+Route::get('linkedin/callback', array(
+    'as'=>'linkedin/callback',
+    'uses'=>'admincontroller@handleProviderCallbacklinkedin'
+));

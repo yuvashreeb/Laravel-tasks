@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker-bs3.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-         <script src="{{asset('/js/jquery-2.2.2.min.js')}}"></script>
+        <script src="{{asset('/js/jquery-2.2.2.min.js')}}"></script>
         <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
         <!-- Include jQuery -->
@@ -38,19 +38,19 @@
         <!-- Geolocation JS -->
         <script type="text/javascript" src="{{asset('js/map.js')}}"></script>
         <link rel="stylesheet" href="{{asset('/css/map.css')}}">
-        
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 
 
     </head>
     <body class="skin-blue">
-<div class="wrapper">
+        <div class="wrapper">
 
-    <!-- Header -->
-      <header class="main-header">
+            <!-- Header -->
+            <header class="main-header">
 
                 <!-- Logo -->
                 <a href="#" class="logo">
@@ -266,7 +266,7 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                    <img src="/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                                     <span class="hidden-xs">Alexander Pierce</span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -294,6 +294,7 @@
                                         </div>
                                         <!-- /.row -->
                                     </li>
+                                    
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
@@ -303,193 +304,195 @@
                                             <a href="{{URL::route('logout')}}" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
+                                    
                                 </ul>
                             </li>
                             <!-- Control Sidebar Toggle Button -->
                             <li>
-                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                                <a href="{{URL::route('logout')}}" data-toggle="control-sidebar"><i class="glyphicon glyphicon-log-out"></i></a>
                             </li>
                         </ul>
                     </div>
                 </nav>
             </header>
-        
 
-    <!-- Sidebar -->
-    
-   
-    <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image" />
-            </div>
-            <div class="pull-left info">
-                <p>Alexander Pierce</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-        </form>
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
-           
-            <li class="treeview active">
-                <a href="#">
-                <i class="glyphicon glyphicon-edit"></i>
-                <span>Update Profile</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                     <li><a href="{{URL::route('UpdateProfile')}}"><i class="fa fa-circle-o"></i> Update Profile</a></li>
-                                 </ul>
-            </li>
-           
-            <li class="treeview" active>
-                <a href="#">
-                <i class="glyphicon glyphicon-edit"></i>
-                <span>Change Password</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                   <li><a href="{{URL::route('ChangePassword')}}"><i class="fa fa-circle-o"></i> Change Password</a></li>
+
+            <!-- Sidebar -->
+
+
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="{{ asset('/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>Alexander Pierce</p>
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+
+                        <li class="treeview active">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                <span>Update Profile</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::route('UpdateProfile')}}"><i class="fa fa-circle-o"></i> Update Profile</a></li>
+                                <li><a href="{{URL::route('Viewprofile')}}"><i class="fa fa-circle-o"></i> View Profile</a></li>
                             </ul>
-            </li>
-            <li class="treeview active">
-                <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span>File Uploads</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{URL::route('FileUpload')}}"><i class="fa fa-circle-o"></i> File Upload</a></li>
+                        </li>
+
+                        <li class="treeview active">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-edit"></i>
+                                <span>Change Password</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::route('ChangePassword')}}"><i class="fa fa-circle-o"></i> Change Password</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview active">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>File Uploads</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::route('FileUpload')}}"><i class="fa fa-circle-o"></i> File Upload</a></li>
                                 <li><a href="{{URL::route('json')}}"><i class="fa fa-circle-o"></i> View Files</a></li>
-                                 </ul>
-            </li>
-            <li class="treeview ">
-                <a href="#">
-                <i class="fa fa-edit"></i> <span>Export to Excel</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                   <li><a href="{{URL::route('excelreg')}}"><i class="fa fa-circle-o"></i> Export Register to Excel</a></li>
-                                 <li><a href="{{URL::route('logexcel')}}"><i class="fa fa-circle-o"></i> Export User Logs to Excel</a></li>
-                                    <li><a href="{{URL::route('fileuploadexcel')}}"><i class="fa fa-circle-o"></i> Export File Uploads to Excel</a></li>
-                                 <li><a href="{{URL::route('timezoneexcel')}}"><i class="fa fa-circle-o"></i> Export Time Zone to Excel</a></li>
-                             </ul>
-            </li>
-            <li class="treeview ">
-                <a href="#">
-                <i class="fa fa-table"></i> <span>Export to PDF</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                     <li><a href="{{URL::route('regpdf')}}"><i class="fa fa-circle-o"></i> Export Register to PDF</a></li>
-                                 <li><a href="{{URL::route('logpdf')}}"><i class="fa fa-circle-o"></i> Export User Logs to PDF</a></li>
-                                    <li><a href="{{URL::route('fileuploadpdf')}}"><i class="fa fa-circle-o"></i> Export File Uploads to PDF</a></li>
-                                 <li><a href="{{URL::route('timezonepdf')}}"><i class="fa fa-circle-o"></i> Export Time Zone to PDF</a></li>
-                           </ul>
-            </li>
-             <li class="treeview active">
-                <a href="#">
-                <i class="glyphicon glyphicon-time"></i>
-                <span>Time Zone</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                     <li><a href="{{URL::route('timezone')}}"><i class="fa fa-circle-o"></i> Time Zone</a></li>
-                                 </ul>
-            </li>
-           
-        </ul>
-    </section>
-    <!-- /.sidebar -->
-</aside>
-  <div class="control-sidebar-bg"></div>
- 
+                            </ul>
+                        </li>
+                        <li class="treeview ">
+                            <a href="#">
+                                <i class="fa fa-edit"></i> <span>Export to Excel</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::route('excelreg')}}"><i class="fa fa-circle-o"></i> Export Register to Excel</a></li>
+                                <li><a href="{{URL::route('logexcel')}}"><i class="fa fa-circle-o"></i> Export User Logs to Excel</a></li>
+                                <li><a href="{{URL::route('fileuploadexcel')}}"><i class="fa fa-circle-o"></i> Export File Uploads to Excel</a></li>
+                                <li><a href="{{URL::route('timezoneexcel')}}"><i class="fa fa-circle-o"></i> Export Time Zone to Excel</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview ">
+                            <a href="#">
+                                <i class="fa fa-table"></i> <span>Export to PDF</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::route('regpdf')}}"><i class="fa fa-circle-o"></i> Export Register to PDF</a></li>
+                                <li><a href="{{URL::route('logpdf')}}"><i class="fa fa-circle-o"></i> Export User Logs to PDF</a></li>
+                                <li><a href="{{URL::route('fileuploadpdf')}}"><i class="fa fa-circle-o"></i> Export File Uploads to PDF</a></li>
+                                <li><a href="{{URL::route('timezonepdf')}}"><i class="fa fa-circle-o"></i> Export Time Zone to PDF</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview active">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-time"></i>
+                                <span>Time Zone</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::route('timezone')}}"><i class="fa fa-circle-o"></i> Time Zone</a></li>
+                            </ul>
+                        </li>
 
-        <!-- jQuery 2.2.0 -->
-        <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
-        $.widget.bridge('uibutton', $.ui.button);
-        </script>
-        <!-- Bootstrap 3.3.6 -->
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <!-- Morris.js charts -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="plugins/morris/morris.min.js"></script>
-        <!-- Sparkline -->
-        <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
-        <!-- jvectormap -->
-        <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="plugins/knob/jquery.knob.js"></script>
-        <!-- daterangepicker -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-        <script src="plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- datepicker -->
-        <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-        <!-- Bootstrap WYSIHTML5 -->
-        <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-        <!-- Slimscroll -->
-        <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-        <!-- FastClick -->
-        <script src="plugins/fastclick/fastclick.js"></script>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+            <div class="control-sidebar-bg"></div>
+
+
+            <!-- jQuery 2.2.0 -->
+            <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+            <!-- jQuery UI 1.11.4 -->
+            <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+            <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+            <script>
+    $.widget.bridge('uibutton', $.ui.button);
+            </script>
+            <!-- Bootstrap 3.3.6 -->
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+            <!-- Morris.js charts -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+            <script src="/plugins/morris/morris.min.js"></script>
+            <!-- Sparkline -->
+            <script src="/plugins/sparkline/jquery.sparkline.min.js"></script>
+            <!-- jvectormap -->
+            <script src="/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+            <script src="/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+            <!-- jQuery Knob Chart -->
+            <script src="/plugins/knob/jquery.knob.js"></script>
+            <!-- daterangepicker -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+            <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+            <!-- datepicker -->
+            <script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
+            <!-- Bootstrap WYSIHTML5 -->
+            <script src="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+            <!-- Slimscroll -->
+            <script src="/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+            <!-- FastClick -->
+            <script src="/plugins/fastclick/fastclick.js"></script>
+            <!-- AdminLTE App -->
+            <script src="dist/js/app.min.js"></script>
+            <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+            <script src="dist/js/pages/dashboard.js"></script>
+            <!-- AdminLTE for demo purposes -->
+            <script src="dist/js/demo.js"></script>
+
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+
+                <section class="content">
+                    <!-- Your Page Content Here -->
+                    @yield('content')
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.3.3
+                </div>
+                <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+                reserved.
+            </footer>
+        </div><!-- ./wrapper -->
+
+        <!-- REQUIRED JS SCRIPTS -->
+
+        <!-- jQuery 2.1.3 -->
+        <script src="{{ asset ("/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.3.min.js") }}"></script>
+        <!-- Bootstrap 3.3.2 JS -->
+        <script src="{{ asset ("/bower_components/admin-lte/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
         <!-- AdminLTE App -->
-        <script src="dist/js/app.min.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <script src="dist/js/pages/dashboard.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-      
+        <script src="{{ asset ("/bower_components/admin-lte/dist/js/app.min.js") }}" type="text/javascript"></script>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-       
-        <section class="content">
-            <!-- Your Page Content Here -->
-            @yield('content')
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+        <!-- Optionally, you can add Slimscroll and FastClick plugins.
+              Both of these plugins are recommended to enhance the
+              user experience -->
 
-   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.3
-    </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
-</div><!-- ./wrapper -->
-
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 2.1.3 -->
-<script src="{{ asset ("/bower_components/admin-lte/plugins/jQuery/jQuery-2.1.3.min.js") }}"></script>
-<!-- Bootstrap 3.3.2 JS -->
-<script src="{{ asset ("/bower_components/admin-lte/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset ("/bower_components/admin-lte/dist/js/app.min.js") }}" type="text/javascript"></script>
-
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-      Both of these plugins are recommended to enhance the
-      user experience -->
-
-</body>
+    </body>
 </html>
 

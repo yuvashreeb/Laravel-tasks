@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')  
-
+<section class='content'>
 <script>
 var Data = <?php echo ($view); ?>;
 
@@ -23,24 +23,6 @@ $(document).ready(function () {
         ]
 
     });
-//    var table = $('#example').DataTable();
-//    $('#example tbody').on('click', '.edit', function () {
-//        var data = table.row($(this).parents('tr')).data();
-//        // var data = jQuery.parseJSON(data);
-//        //alert(data["Id"] + "'s salary is: " + data["Id"]);
-//        window.location.href = '/edit/' + data['Id'];
-//    });
-//    $('#example tbody').on('click', '.delete', function () {
-//        var data = table.row($(this).parents('tr')).data();
-//        //var data = jQuery.parseJSON(data);
-//        //alert(data["Id"] + "'s salary is: " + data["Id"]);
-//        window.location.href = '/delete/' + data['Id'];
-//    });
-//    $('#example tbody').on('click', '.view', function () {
-//        var data = table.row($(this).parents('tr')).data();
-//        // alert(data["Id"] + "'s salary is: " + data["Id"]);
-//        window.location.href = '/view/' + data['Id'];
-//    });
 
 
 });
@@ -56,3 +38,4 @@ $(document).ready(function () {
 </form>   
 
 @endsection
+</section>

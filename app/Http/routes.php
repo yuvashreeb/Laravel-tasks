@@ -1,51 +1,51 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+  |--------------------------------------------------------------------------
+  | Application Routes
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register all of the routes for an application.
+  | It's a breeze. Simply tell Laravel the URIs it should respond to
+  | and give it the controller to call when that URI is requested.
+  |
+ */
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard',array(
-    'as'=>'dashboard',
-   'uses'=>'admincontroller@index' 
+Route::get('/dashboard', array(
+    'as' => 'dashboard',
+    'uses' => 'admincontroller@index'
 ));
-        
-Route::get('/registration',array(
-    'as'=>'registration',
-    'uses'=>'admincontroller@register'
+
+Route::get('/registration', array(
+    'as' => 'registration',
+    'uses' => 'admincontroller@register'
 ));
-Route::get('/login',array(
-    'as'=>'login',
-    'uses'=>'admincontroller@login'
+Route::get('/login', array(
+    'as' => 'login',
+    'uses' => 'admincontroller@login'
 ));
-Route::post('/registration-step2',array(
-   'as'=>'registration-step2',
-    'uses'=>'admincontroller@registerstep'
+Route::post('/registration-step2', array(
+    'as' => 'registration-step2',
+    'uses' => 'admincontroller@registerstep'
 ));
-Route::get('/registration-step2',array(
-   'as'=>'registration-step2',
-    'uses'=>'admincontroller@registerstep'
+Route::get('/registration-step2', array(
+    'as' => 'registration-step2',
+    'uses' => 'admincontroller@registerstep'
 ));
-Route::post('/finalregistration',array(
-   'as'=>'finalregistration',
-    'uses'=>'admincontroller@registerfinal'
+Route::post('/finalregistration', array(
+    'as' => 'finalregistration',
+    'uses' => 'admincontroller@registerfinal'
 ));
-Route::post('/success',array(
-   'as'=>'success',
-    'uses'=>'admincontroller@confirm'
+Route::post('/success', array(
+    'as' => 'success',
+    'uses' => 'admincontroller@confirm'
 ));
-Route::post('/loginverify',array(
-   'as'=>'loginverify',
-    'uses'=>'admincontroller@loginverify'
+Route::post('/loginverify', array(
+    'as' => 'loginverify',
+    'uses' => 'admincontroller@loginverify'
 ));
 Route::get('UpdateProfile', array(
     'as' => 'UpdateProfile',
@@ -58,6 +58,10 @@ Route::get('ChangePassword', array(
 Route::post('Update', array(
     'as' => 'onupdate',
     'uses' => 'admincontroller@onupdate'
+));
+Route::get('Viewprofile', array(
+    'as' => 'Viewprofile',
+    'uses' => 'admincontroller@viewProfile'
 ));
 Route::post('ChangePassword', array(
     'as' => 'password',
@@ -128,43 +132,46 @@ Route::get('timezonepdf', array(
     'as' => 'timezonepdf',
     'uses' => 'admincontroller@timezonepdf'
 ));
-Route::get('/edit/{data}',array(
-   'as'=>'/edit/',
-    'uses'=>'admincontroller@edit'
+Route::get('/edit/{data}', array(
+    'as' => '/edit/',
+    'uses' => 'admincontroller@edit'
 ));
-Route::get('/delete/{data}',array(
-   'as'=>'/delete/',
-    'uses'=>'admincontroller@delete'
+Route::get('/delete/{data}', array(
+    'as' => '/delete/',
+    'uses' => 'admincontroller@delete'
 ));
-Route::get('/view/{data}',array(
-   'as'=>'/view/',
-    'uses'=>'admincontroller@view'
+Route::get('/view/{data}', array(
+    'as' => '/view/',
+    'uses' => 'admincontroller@view'
 ));
 Route::get('facebook', array(
-    'as'=>'facebook',
-    'uses'=>'admincontroller@redirectToProvider'
+    'as' => 'facebook',
+    'uses' => 'admincontroller@redirectToProvider'
 ));
 Route::get('facebook/callback', array(
-    'as'=>'facebook/callback',
-    'uses'=>'admincontroller@handleProviderCallback'
+    'as' => 'facebook/callback',
+    'uses' => 'admincontroller@handleProviderCallback'
 ));
-Route::get('/DashBoard',array(
-    'as'=>'DashBoard',
-    'uses'=>'admincontroller@DashBoard'
+Route::get('/DashBoard', array(
+    'as' => 'DashBoard',
+    'uses' => 'admincontroller@DashBoard'
 ));
 Route::get('google', array(
-    'as'=>'google',
-    'uses'=>'admincontroller@redirectToProvidergoogle'
+    'as' => 'google',
+    'uses' => 'admincontroller@redirectToProvidergoogle'
 ));
 Route::get('google/callback', array(
-    'as'=>'google/callback',
-    'uses'=>'admincontroller@onSignIn'
+    'as' => 'google/callback',
+    'uses' => 'admincontroller@onSignIn'
 ));
 Route::get('linkedin', array(
-    'as'=>'linkedin',
-    'uses'=>'admincontroller@redirectToProviderlinkedin'
+    'as' => 'linkedin',
+    'uses' => 'admincontroller@redirectToProviderlinkedin'
 ));
 Route::get('linkedin/callback', array(
-    'as'=>'linkedin/callback',
-    'uses'=>'admincontroller@handleProviderCallbacklinkedin'
+    'as' => 'linkedin/callback',
+    'uses' => 'admincontroller@handleProviderCallbacklinkedin'
 ));
+Route::get('Relation', array(
+    'as' => 'Relation',
+    'uses' => 'Relationship@example'));

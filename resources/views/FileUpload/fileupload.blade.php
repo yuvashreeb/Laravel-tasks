@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('content') 
-
-
-
-        
-   
-
+<section class='content'>
 <div class="col-md-6 col-md-offset-3">
     <p class="login-box-msg">File Upload Progress Bar </p>
 
@@ -28,17 +23,14 @@
             <div id='status'></div>
         </div>
         <input type="submit" name="upload" id="upload" class="btn btn-primary btn-sm" value="Upload"/>
-
-
     </form>
 
-    <!-- /.social-auth-links -->
-        
 </div>
 
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-        <script src="//oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
-        <script src="{{asset('js/progress.js')}}"></script>
-        <link rel="stylesheet" href="{{asset('/css/styles.css')}}">
+<script src="//oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
+<script src="{{asset('js/progress.js')}}"></script>
+<link rel="stylesheet" href="{{asset('/css/styles.css')}}">
 @endsection  
+</section>
 

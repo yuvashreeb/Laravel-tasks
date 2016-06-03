@@ -23,7 +23,7 @@ $(document).ready(function () {
                 "targets": -1,
                 title: "Actions",
                 "data": null,
-                "defaultContent": '<a  class="edit">Edit</a>/<a  class="delete">Delete</a>/<a class="view">View</a>'
+                "defaultContent": '<a  class="edit glyphicon glyphicon-edit"></a>/ <a  class="delete glyphicon glyphicon-trash"></a> /<a class="view glyphicon glyphicon-eye-open"></a>'
             }
 
         ]

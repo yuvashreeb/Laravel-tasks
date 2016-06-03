@@ -304,18 +304,19 @@ class admincontroller extends BaseController {
 
     public function onupdate() {
         session()->regenerate();
-        echo Session::get('Id');
+        //echo Session::get('Id');
         $Full_name = Input::get('Full_name');
-        echo $Full_name;
+        //echo $Full_name;
         $Address = Input::get('Address');
         $City = Input::get('City');
         $state = Input::get('state');
         $Email = Input::get('Email');
         $Mobile = Input::get('Mobile');
         $card = Input::get('credit');
-        //$card = Crypt::encrypt($card);
+        $card = Crypt::encrypt($card);
+        //echo $card;
 
-        $update = AddUser::where('Id', Session::get('Id'))->update([
+        $update = AddUser::where('Email', Session::get('Email'))->update([
             'FullName' => $Full_name,
             'Address' => $Address,
             'City' => $City,
@@ -330,6 +331,23 @@ class admincontroller extends BaseController {
         } else {
             return Redirect::route('UpdateProfile')
                             ->with('update', 'Problem in updating');
+        }
+    }
+
+    public function viewProfile() {
+        session()->regenerate();
+        $value = DB::table('Registration')->select('CreditCard')->where('Email', Session::get('Email'))->get();
+        $value = json_decode(json_encode($value));
+        foreach ($value as $i) {
+            global $result;
+            $result = $i->CreditCard;
+            $result = Crypt::decrypt($result);
+        }
+
+        $getdata = AddUser::select('FullName', 'Address', 'City', 'State', 'PhoneNumber', 'Email')->where('Email', Session::get('Email'))->get();
+        $getdata = json_decode(json_encode($getdata), true);
+        foreach ($getdata as $data) {
+            return view('layouts.ViewProfile', ['temp' => $data, 'results' => $result]);
         }
     }
 
@@ -634,10 +652,6 @@ class admincontroller extends BaseController {
 
         return Socialite::driver('facebook')->redirect();
     }
-
-//
-
-
     public function handleProviderCallback() {
         session()->regenerate();
         $user = Socialite::driver('facebook')->user();
@@ -701,7 +715,6 @@ class admincontroller extends BaseController {
                 $LoggedUser = AddUser::where('Email', $Email)->update(['FbId' => $FBId]);
                 return $LoggedUser;
             }
-            
         }
     }
 

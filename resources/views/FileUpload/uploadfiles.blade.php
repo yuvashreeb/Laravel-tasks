@@ -1,6 +1,7 @@
   
 @extends('layouts.app')
-@section('content')    
+@section('content') 
+<section class='content'>
 <script src="{{asset('/js/jquery-2.2.2.min.js')}}"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 
@@ -23,8 +24,11 @@ $(document).ready(function () {
 
 });
 </script>
+
 <form class="form-group"  id="UserProfile"  >
     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
     </table>
 </form>  
+
 @endsection
+</section>

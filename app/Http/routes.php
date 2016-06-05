@@ -132,16 +132,16 @@ Route::get('timezonepdf', array(
     'as' => 'timezonepdf',
     'uses' => 'admincontroller@timezonepdf'
 ));
-Route::get('/edit/{data}', array(
-    'as' => '/edit/',
+Route::get('edit/{data}', array(
+    'as' => 'edit',
     'uses' => 'admincontroller@edit'
 ));
-Route::get('/delete/{data}', array(
-    'as' => '/delete/',
+Route::get('delete/{data}', array(
+    'as' => 'delete',
     'uses' => 'admincontroller@delete'
 ));
-Route::get('/view/{data}', array(
-    'as' => '/view/',
+Route::get('view/{data}', array(
+    'as' => 'view',
     'uses' => 'admincontroller@view'
 ));
 Route::get('facebook', array(
@@ -174,4 +174,9 @@ Route::get('linkedin/callback', array(
 ));
 Route::get('Relation', array(
     'as' => 'Relation',
-    'uses' => 'Relationship@example'));
+    'uses' => 'Relationship@example'
+));
+Route::get('ajaxcall',array(
+    'as'=>'ajaxcall',
+    'uses'=>'admincontroller@ajaxcall'
+));

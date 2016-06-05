@@ -37,13 +37,14 @@
 
         <!-- Geolocation JS -->
         <script type="text/javascript" src="{{asset('js/map.js')}}"></script>
+
         <link rel="stylesheet" href="{{asset('/css/map.css')}}">
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-
+        <script type="text/javascript" src='js/Ajaxjs.js'></script>
 
     </head>
     <body class="skin-blue">
@@ -294,7 +295,7 @@
                                         </div>
                                         <!-- /.row -->
                                     </li>
-                                    
+
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
@@ -304,7 +305,7 @@
                                             <a href="{{URL::route('logout')}}" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
-                                    
+
                                 </ul>
                             </li>
                             <!-- Control Sidebar Toggle Button -->
@@ -428,7 +429,7 @@
             <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
             <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
             <script>
-    $.widget.bridge('uibutton', $.ui.button);
+$.widget.bridge('uibutton', $.ui.button);
             </script>
             <!-- Bootstrap 3.3.6 -->
             <script src="bootstrap/js/bootstrap.min.js"></script>

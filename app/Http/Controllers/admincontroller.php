@@ -717,5 +717,19 @@ class admincontroller extends BaseController {
             }
         }
     }
+    
+    public function ajaxcall(Request $request) {
+        $length = $request->input('length');
+        $start = $request->input('start');
+        $search = $request->input('search');
+        $order = $request->input('order');
+        $column = $request->input('columns');
+        // if($search['value']=="" && $order[0]['dir']==""){
+        $ajax = DB::table('TimeZone')->select('*')->limit($length)->Offset($start)->get();
+        $ajax = json_encode($ajax);
+        $count = DB::table('TimeZone')->count();
+        echo "{\"recordsTotal\":" . $count . ",\"recordsFiltered\":" . $count . ", \"data\":" . $ajax . "}";
+    }
+
 
 }

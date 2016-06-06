@@ -1,6 +1,7 @@
 
 @extends('layouts.app')
 @section('content')
+<section class="content">
 <table id="timezone" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
         <tr>
@@ -27,6 +28,7 @@
     </tfoot>
 </table>
 @stop
+</section>
 
 
 

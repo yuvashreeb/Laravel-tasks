@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($User as $value)
+        @foreach($view as $value)
         <tr>
             <td>{{$value['Id']}}</td>
             <td>{{$value['Name']}}</td>

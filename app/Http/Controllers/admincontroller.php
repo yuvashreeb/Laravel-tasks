@@ -644,8 +644,11 @@ class admincontroller extends BaseController {
     }
 
     public function delete($data) {
-        $Delete = TimeZone::select('*')->where('Id', $data)->get();
-        return view('layouts.delete', ['view' => $Delete]);
+        DB::table('TimeZone')->where('Id', '=', $data)->delete();
+        $User = DB::table('TimeZone')->select("*")->where('Id', '=', $data)->get();
+
+        $User = json_decode(json_encode($User), true);
+        return view('layouts.delete', compact('User'));
     }
 
     public function redirectToProvider() {
@@ -729,6 +732,17 @@ class admincontroller extends BaseController {
         $ajax = json_encode($ajax);
         $count = DB::table('TimeZone')->count();
         echo "{\"recordsTotal\":" . $count . ",\"recordsFiltered\":" . $count . ", \"data\":" . $ajax . "}";
+    }
+    public function SaveRows() {
+        $ID = Input::get('Id');
+        $Name = Input::get('Name');
+        $Offset = Input::get('Offset');
+        DB::table('TimeZone')->where('Id', '=', $ID)->update(['Name' => $Name, 'Offset' => $Offset]);
+
+        $UserUpdate = DB::table('TimeZone')->select("*")->where('Id', '=', $ID)->get();
+        $UserUpdate = json_decode(json_encode($UserUpdate), true);
+//print_r($User);
+        return view('layouts.TimeZone', compact('UserUpdate'));
     }
 
 

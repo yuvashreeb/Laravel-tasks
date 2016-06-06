@@ -2,6 +2,7 @@ $(document).ready(function () {
     $('#timezone').DataTable({
         "processing": true,
         "serverSide": true,
+        "sPaginationType":"full_numbers",
         "ajax": "ajaxcall",
         "columns": [
             {"data": "Id"},
@@ -12,7 +13,7 @@ $(document).ready(function () {
                 "targets": -1,
                 "data": null,
                 "render": function (data, type, full, meta) {
-                    return "<a href='edit/" + data.Id + "'><button class='one'>EDIT</button></a>" + " <a href='delete/" + data.Id + "'><button class='one'>DELETE</button></a>" + " <a href='view/" + data.Id + "'><button class='view' value='" + JSON.stringify(data) + "'>VIEW</button></a>";
+                    return "<a href='edit/" + data.Id + "'><button class='one glyphicon glyphicon-edit'></button></a>" + " <a href='delete/" + data.Id + "'><button class='one glyphicon glyphicon-trash'></button></a>" + " <a href='view/" + data.Id + "'><button class='view glyphicon glyphicon-eye-open' value='" + JSON.stringify(data) + "'></button></a>";
 
                 }
             }

@@ -11,9 +11,10 @@ class Continent extends Model {
     protected $fillable = ['Id', 'Name', 'Code', 'CreatedAt', 'IsActive'];
     public $timestamps = false;
     
-    public function country()
-    {
-        return $this->hasMany('App\Country','ContinentId');
+    public function Country() {
+        return $this->hasMany('App\Country','ContinentId',"Id"); 
     }
-
+   public function ThroughState(){
+       return $this->hasManyThrough('App\State','App\Country','ContinentId','CountryId','Id');
+   }
 }

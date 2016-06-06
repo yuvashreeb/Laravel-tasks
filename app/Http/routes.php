@@ -174,7 +174,7 @@ Route::get('linkedin/callback', array(
 ));
 Route::get('Relation', array(
     'as' => 'Relation',
-    'uses' => 'Relationship@example'
+    'uses' => 'RelationshipController@example'
 ));
 Route::get('ajaxcall',array(
     'as'=>'ajaxcall',

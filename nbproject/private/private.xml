@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/yuva/karmanya/mydev/laravel-tasks/resources/views/layouts/app.blade.php</file>
-            <file>file:/home/yuva/karmanya/mydev/laravel-tasks/public/js/Ajaxjs.js</file>
-            <file>file:/home/yuva/karmanya/mydev/laravel-tasks/app/Http/Controllers/admincontroller.php</file>
-            <file>file:/home/yuva/karmanya/mydev/laravel-tasks/resources/views/layouts/TimeZone.blade.php</file>
-            <file>file:/home/yuva/karmanya/mydev/laravel-tasks/resources/views/layouts/view.blade.php</file>
-            <file>file:/home/yuva/karmanya/mydev/laravel-tasks/resources/views/layouts/delete.blade.php</file>
-            <file>file:/home/yuva/karmanya/mydev/laravel-tasks/resources/views/layouts/edit.blade.php</file>
-            <file>file:/home/yuva/karmanya/mydev/laravel-tasks/app/Http/routes.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
